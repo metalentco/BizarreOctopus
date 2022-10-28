@@ -25,10 +25,10 @@ contract BoredApe is
     
     address proxyRegistryAddress;
 
-    uint256 public maxSupply = 100;
+    uint256 public maxSupply = 9999;
 
     string public baseURI; 
-    string public notRevealedUri = "ipfs://QmYUuwLoiRb8woXwJCCsr1gvbr8E21KuxRtmVBmnH1tZz7/hidden.json";
+    string public notRevealedUri = "ipfs://QmVtxEj8S6xkqVDT8bXNu4r8u8HTrqtDf9urRC2bebfJBh/hidden_image.gif";
     string public baseExtension = ".json";
 
     bool public paused = false;
@@ -39,15 +39,15 @@ contract BoredApe is
     uint256 presaleAmountLimit = 3;
     mapping(address => uint256) public _presaleClaimed;
 
-    uint256 _price = 10000000000000000; // 0.01 ETH
+    uint256 _price = 80000000000000000; // 0.01 ETH
 
     Counters.Counter private _tokenIds;
 
-    uint256[] private _teamShares = [25, 35, 40]; // 3 PEOPLE IN THE TEAM
+    uint256[] private _teamShares = [98, 1, 1]; // 3 PEOPLE IN THE TEAM
     address[] private _team = [
-        0x933572D5F83B00A998102b7bf1a99c0f197E685B, // Admin Account gets 25% of the total revenue
-        0x82de9CE4a49fFeC4C41Cf733126F618eD83a879C, // Test Account gets 35% of the total revenue
-        0x8a7aC9834e2D4487Da22Dc130C97Ee8fBDc85568 // VIP Account gets 40% of the total revenue
+        0xC856340Ed50668b0B2A20905D610e3bF5Be005Fe, // Admin Account gets 25% of the total revenue
+        0xd7E745cB3884cd5d740Ee9b28E90cc42E9CBcD7a, // Test Account gets 35% of the total revenue
+        0xAc1d6B36c6357bAD641618537D062c8Be7CB36BF // VIP Account gets 40% of the total revenue
     ];
 
     constructor(string memory uri, bytes32 merkleroot, address _proxyRegistryAddress)
@@ -113,11 +113,11 @@ contract BoredApe is
     isValidMerkleProof(_proof)
     onlyAccounts
     {
-        require(msg.sender == account,          "CryptoPunks: Not allowed");
-        require(presaleM,                       "CryptoPunks: Presale is OFF");
-        require(!paused,                        "CryptoPunks: Contract is paused");
+        require(msg.sender == account,          "Doodlins: Not allowed");
+        require(presaleM,                       "Doodlins: Presale is OFF");
+        require(!paused,                        "Doodlins: Contract is paused");
         require(
-            _amount <= presaleAmountLimit,      "CryptoPunks: You can't mint so much tokens");
+            _amount <= presaleAmountLimit,      "Doodlins: You can't mint so much tokens");
         require(
             _presaleClaimed[msg.sender] + _amount <= presaleAmountLimit,  "CryptoPunks: You can't mint so much tokens");
 
@@ -126,11 +126,11 @@ contract BoredApe is
 
         require(
             current + _amount <= maxSupply,
-            "CryptoPunks: max supply exceeded"
+            "Doodlins: max supply exceeded"
         );
         require(
             _price * _amount <= msg.value,
-            "CryptoPunks: Not enough ethers sent"
+            "Doodlins: Not enough ethers sent"
         );
              
         _presaleClaimed[msg.sender] += _amount;
@@ -145,19 +145,19 @@ contract BoredApe is
     payable
     onlyAccounts
     {
-        require(publicM,                        "CryptoPunks: PublicSale is OFF");
-        require(!paused, "CryptoPunks: Contract is paused");
-        require(_amount > 0, "CryptoPunks: zero amount");
+        require(publicM,                        "Doodlin Town: PublicSale is OFF");
+        require(!paused, "Doodlin Town: Contract is paused");
+        require(_amount > 0, "Doodlin Town: zero amount");
 
         uint current = _tokenIds.current();
 
         require(
             current + _amount <= maxSupply,
-            "CryptoPunks: Max supply exceeded"
+            "Doodlin Town: Max supply exceeded"
         );
         require(
             _price * _amount <= msg.value,
-            "CryptoPunks: Not enough ethers sent"
+            "Doodlin Town: Not enough ethers sent"
         );
         
         

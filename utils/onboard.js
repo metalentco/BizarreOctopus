@@ -23,7 +23,7 @@ const initOnboard = init({
     //   id: '0x1',
     //   token: 'ETH',
     //   label: 'Ethereum Mainnet',
-    //   rpcUrl: 'https://mainnet.infura.io/v3/ababf9851fd845d0a167825f97eeb12b'
+    //   rpcUrl: RPC_URL
     // },
     // {
     //   id: '0x3',
@@ -31,12 +31,19 @@ const initOnboard = init({
     //   label: 'Ethereum Ropsten Testnet',
     //   rpcUrl: 'https://ropsten.infura.io/v3/ababf9851fd845d0a167825f97eeb12b'
     // },
+    // {
+    //   id: '0x4',
+    //   token: 'rETH',
+    //   label: 'Ethereum Rinkeby Testnet',
+    //   rpcUrl: RPC_URL
+    // }
     {
-      id: '0x4',
-      token: 'rETH',
-      label: 'Ethereum Rinkeby Testnet',
+      id: '0x5',
+      token: 'gETH',
+      label: 'Goerli Testnet Network',
       rpcUrl: RPC_URL
     }
+    
     // {
     //   id: '0x89',
     //   token: 'MATIC',

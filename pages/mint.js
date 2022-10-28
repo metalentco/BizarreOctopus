@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { initOnboard } from '../utils/onboard'
 import { useConnectWallet, useSetChain, useWallets } from '@web3-onboard/react'
 import { config } from '../dapp.config'
+import imagen1 from '/Users/efrengustavoadolfocastanedaheras/Desktop/boredape-minting-dapp/public/images/animacion_edicion1.gif'
+import Image from 'next/image'
 import {
   getTotalMinted,
   getMaxSupply,
@@ -122,15 +124,10 @@ export default function Mint() {
   }
 
   return (
-    <div className="min-h-screen h-full w-full overflow-hidden flex flex-col items-center justify-center bg-brand-background ">
+    <div className="custom-image bg-cover min-h-screen h-full w-full overflow-hidden flex flex-col items-center justify-center  ">
       <div className="relative w-full h-full flex flex-col items-center justify-center">
-        <img
-          src="/images/blur.jpeg"
-          className="animate-pulse-slow absolute inset-auto block w-full min-h-screen object-cover"
-        />
-
-        <div className="flex flex-col items-center justify-center h-full w-full px-2 md:px-10">
-          <div className="relative z-1 md:max-w-3xl w-full bg-gray-900/90 filter backdrop-blur-sm py-4 rounded-md px-2 md:px-10 flex flex-col items-center">
+        <div className="flex flex-col items-center justify-center h-full w-full px-2 md:px-10 ">
+          <div className="fondo2  relative z-1 md:max-w-3xl w-full bg-gray-900/90 filter backdrop-blur-sm py-4 rounded-md px-2 md:px-10 flex flex-col items-center">
             {wallet && (
               <button
                 className="absolute right-4 bg-indigo-600 transition duration-200 ease-in-out font-chalk border-2 border-[rgba(0,0,0,1)] shadow-[0px_3px_0px_0px_rgba(0,0,0,1)] active:shadow-none px-4 py-2 rounded-md text-sm text-white tracking-wide uppercase"
@@ -163,16 +160,16 @@ export default function Mint() {
                   </p>
                 </div>
 
-                <img
-                  src="/images/13.png"
+                <Image
+                  src={imagen1}
                   className="object-cover w-full sm:h-[280px] md:w-[250px] rounded-md"
                 />
               </div>
 
               <div className="flex flex-col items-center w-full px-4 mt-16 md:mt-0">
-                <div className="font-coiny flex items-center justify-between w-full">
+                <div className="border-4 divide-x-4 divide-gray-700 rounded-xl border-gray-700 font-coiny flex items-center justify-between w-full">
                   <button
-                    className="w-14 h-10 md:w-16 md:h-12 flex items-center justify-center text-brand-background hover:shadow-lg bg-gray-300 font-bold rounded-md"
+                    className="w-14 h-10 md:w-16 md:h-12 flex items-center justify-center text-brand-background hover:shadow-lg bg-transparent font-bold"
                     onClick={incrementMintAmount}
                   >
                     <svg
@@ -196,7 +193,7 @@ export default function Mint() {
                   </p>
 
                   <button
-                    className="w-14 h-10 md:w-16 md:h-12 flex items-center justify-center text-brand-background hover:shadow-lg bg-gray-300 font-bold rounded-md"
+                    className="w-14 h-10 md:w-16 md:h-12 flex items-center justify-center text-brand-background hover:shadow-lg bg-transparent font-bold"
                     onClick={decrementMintAmount}
                   >
                     <svg
@@ -216,12 +213,12 @@ export default function Mint() {
                   </button>
                 </div>
 
-                <p className="text-sm text-pink-200 tracking-widest mt-3">
+                <p className="text-sm text-white tracking-widest mt-3">
                   Max Mint Amount: {maxMintAmount}
                 </p>
 
                 <div className="border-t border-b py-4 mt-16 w-full">
-                  <div className="w-full text-xl font-coiny flex items-center justify-between text-brand-yellow">
+                  <div className="w-full text-xl font-coiny flex items-center justify-between text-white">
                     <p>Total</p>
 
                     <div className="flex items-center space-x-3">
@@ -251,7 +248,7 @@ export default function Mint() {
                   </button>
                 ) : (
                   <button
-                    className="font-coiny mt-12 w-full bg-gradient-to-br from-brand-purple to-brand-pink shadow-lg px-6 py-3 rounded-md text-2xl text-white hover:shadow-pink-400/50 mx-4 tracking-wide uppercase"
+                    className="font-coiny mt-12 w-full bg-transparent border-4 border-gray-700 shadow-lg px-6 py-3 rounded-2xl text-2xl text-white hover:shadow-pink-400/50 mx-4 tracking-wide uppercase"
                     onClick={() => connect()}
                   >
                     Connect Wallet
@@ -279,7 +276,7 @@ export default function Mint() {
                 Contract Address
               </h3>
               <a
-                href={`https://rinkeby.etherscan.io/address/${config.contractAddress}#readContract`}
+                href={`https://goerli.etherscan.io/address/${config.contractAddress}#readContract`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 mt-4"
