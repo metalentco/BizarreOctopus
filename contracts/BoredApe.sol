@@ -4,19 +4,18 @@ pragma solidity ^0.8.9;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
-import '@openzeppelin/contracts/finance/PaymentSplitter.sol';
-import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
+
+
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
 // @author codingwithdidem
 // @contact codingwithdidem@gmail.com
 
-contract BoredApe is 
+contract DoodlinTown is 
     ERC721, 
     Ownable, 
-    ReentrancyGuard, 
-    PaymentSplitter 
+    ReentrancyGuard
 {
     using Strings for uint256;
     using Counters for Counters.Counter;
@@ -43,19 +42,14 @@ contract BoredApe is
 
     Counters.Counter private _tokenIds;
 
-    uint256[] private _teamShares = [98, 1, 1]; // 3 PEOPLE IN THE TEAM
-    address[] private _team = [
-        0xC856340Ed50668b0B2A20905D610e3bF5Be005Fe, // Admin Account gets 25% of the total revenue
-        0xd7E745cB3884cd5d740Ee9b28E90cc42E9CBcD7a, // Test Account gets 35% of the total revenue
-        0xAc1d6B36c6357bAD641618537D062c8Be7CB36BF // VIP Account gets 40% of the total revenue
-    ];
+    
 
-    constructor(string memory uri, bytes32 merkleroot, address _proxyRegistryAddress)
-        ERC721("BoredApe", "APE")
-        PaymentSplitter(_team, _teamShares) // Split the payment based on the teamshares percentages
+    constructor(string memory uri, address _proxyRegistryAddress)
+        ERC721("DoodlinTown", "DOODT")
+        
         ReentrancyGuard() // A modifier that can prevent reentrancy during certain functions
     {
-        root = merkleroot;
+        
         proxyRegistryAddress = _proxyRegistryAddress;
 
         setBaseURI(uri);
@@ -73,26 +67,14 @@ contract BoredApe is
         revealed = true;
     }
 
-    function setMerkleRoot(bytes32 merkleroot) 
-    onlyOwner 
-    public 
-    {
-        root = merkleroot;
-    }
+   
 
     modifier onlyAccounts () {
         require(msg.sender == tx.origin, "Not allowed origin");
         _;
     }
 
-    modifier isValidMerkleProof(bytes32[] calldata _proof) {
-         require(MerkleProof.verify(
-            _proof,
-            root,
-            keccak256(abi.encodePacked(msg.sender))
-            ) == true, "Not allowed origin");
-        _;
-   }
+    
 
     function togglePause() public onlyOwner {
         paused = !paused;
@@ -107,38 +89,7 @@ contract BoredApe is
     }
 
 
-    function presaleMint(address account, uint256 _amount, bytes32[] calldata _proof)
-    external
-    payable
-    isValidMerkleProof(_proof)
-    onlyAccounts
-    {
-        require(msg.sender == account,          "Doodlins: Not allowed");
-        require(presaleM,                       "Doodlins: Presale is OFF");
-        require(!paused,                        "Doodlins: Contract is paused");
-        require(
-            _amount <= presaleAmountLimit,      "Doodlins: You can't mint so much tokens");
-        require(
-            _presaleClaimed[msg.sender] + _amount <= presaleAmountLimit,  "CryptoPunks: You can't mint so much tokens");
-
-
-        uint current = _tokenIds.current();
-
-        require(
-            current + _amount <= maxSupply,
-            "Doodlins: max supply exceeded"
-        );
-        require(
-            _price * _amount <= msg.value,
-            "Doodlins: Not enough ethers sent"
-        );
-             
-        _presaleClaimed[msg.sender] += _amount;
-
-        for (uint i = 0; i < _amount; i++) {
-            mintInternal();
-        }
-    }
+    
 
     function publicSaleMint(uint256 _amount) 
     external 

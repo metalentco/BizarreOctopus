@@ -139,9 +139,9 @@ export const publicMint = async (mintAmount) => {
     return {
       success: true,
       status: (
-        <a href={`https://goerli.etherscan.io/tx/${txHash}`} target="_blank">
+        <a href={`https://etherscan.io/tx/${txHash}`} target="_blank">
           <p>✅ Check out your transaction on Etherscan:</p>
-          <p>{`https://goerli.etherscan.io/tx/${txHash}`}</p>
+          <p>{`https://etherscan.io/tx/${txHash}`}</p>
         </a>
       )
     }
