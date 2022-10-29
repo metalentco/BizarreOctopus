@@ -3,10 +3,15 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { config } from '../dapp.config'
+import banner from "../public/images/thumbnail_Web_mint.png"
 
 export default function Home() {
   return (
-    <div className="min-h-screen h-full w-full flex flex-col bg-brand-light overflow-hidden bg-banner bg-cover">
+    <div className="min-h-screen h-full w-full flex flex-col bg-brand-light overflow-hidden bg-cover" style={{
+      backgroundImage: `url(${banner.src})`,
+      width: '100%',
+      height: '100%',
+    }}>
       <Head>
         <title>{config.title}</title>
         <meta name="description" content={config.description} />
