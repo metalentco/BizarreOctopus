@@ -124,7 +124,7 @@ export default function Mint() {
   }
 
   return (
-    <div className="custom-image bg-cover min-h-screen h-full w-full overflow-hidden flex flex-col items-center justify-center  ">
+    <div className="bg-banner bg-cover min-h-screen h-full w-full overflow-hidden flex flex-col items-center justify-center  ">
       <div className="relative w-full h-full flex flex-col items-center justify-center">
         <div className="flex flex-col items-center justify-center h-full w-full px-2 md:px-10 ">
           <div className="fondo2  relative z-1 md:max-w-3xl w-full bg-gray-900/90 filter backdrop-blur-sm py-4 rounded-md px-2 md:px-10 flex flex-col items-center">

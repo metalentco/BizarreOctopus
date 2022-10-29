@@ -19,6 +19,11 @@ module.exports = {
         'brand-light': 'var(--clr-light)',
         'brand-background': 'var(--clr-background)'
       },
+
+      backgroundImage: () => ({
+        banner: "url('../public/images/thumbnail_Web_mint.png')",
+      }),
+      
       animation: {
         'pulse-slow': 'pulse 10s linear infinite'
       }
