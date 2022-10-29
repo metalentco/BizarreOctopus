@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "yarn lingui && next build",
+    "build": "next build && next export",
     "start": "next start -p 3001",
     "staging": "next start -p 3001",
     "start": "next start",
