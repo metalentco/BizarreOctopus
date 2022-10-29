@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { initOnboard } from '../utils/onboard'
 import { useConnectWallet, useSetChain, useWallets } from '@web3-onboard/react'
 import { config } from '../dapp.config'
-import imagen1 from '/Users/efrengustavoadolfocastanedaheras/Desktop/boredape-minting-dapp/public/images/animacion_edicion1.gif'
+import animation from '/public/images/animacion_edicion1.gif'
 import Image from 'next/image'
 import {
   getTotalMinted,
@@ -161,7 +161,8 @@ export default function Mint() {
                 </div>
 
                 <Image
-                  src={imagen1}
+                  alt="animation"
+                  src={animation}
                   className="object-cover w-full sm:h-[280px] md:w-[250px] rounded-md"
                 />
               </div>
