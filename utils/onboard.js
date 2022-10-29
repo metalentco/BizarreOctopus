@@ -19,12 +19,12 @@ const coinbaseWallet = coinbaseModule()
 const initOnboard = init({
   wallets: [walletConnect, coinbaseWallet, injected, fortmatic],
   chains: [
-    {
-      id: '0x1',
-      token: 'ETH',
-      label: 'Ethereum Mainnet',
-      rpcUrl: RPC_URL
-    },
+    // {
+    //   id: '0x1',
+    //   token: 'ETH',
+    //   label: 'Ethereum Mainnet',
+    //   rpcUrl: RPC_URL
+    // },
     // {
     //   id: '0x3',
     //   token: 'tROP',

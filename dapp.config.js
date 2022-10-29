@@ -1,7 +1,7 @@
 const config = {
   title: 'Doodlin Town',
   description: '',
-  contractAddress: '0xB501a98AD69CCc3D7092C80d72f740F06BFAD2e8',
+  contractAddress: '0xd8B0c0b515c9C8ffdad9d7b6e4BDC7d18396a94d',
   maxMintAmount: 4,
   presaleMaxMintAmount: 4,
   price: 0.039
