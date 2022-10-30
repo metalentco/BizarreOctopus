@@ -4,7 +4,7 @@ const config = {
   contractAddress: '0x94f62A5F63D9957D9867fAc87F8542F6F7bBcA83',
   maxMintAmount: 4,
   presaleMaxMintAmount: 4,
-  price: 0.009
+  price: 0.00
 }
 
 export { config }
