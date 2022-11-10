@@ -13,7 +13,7 @@ import {
   presaleMint,
   publicMint
 } from '../utils/interact'
-import banner from "../public/images/thumbnail_Web_mint.png"
+import banner from "../public/images/BizarreOctopus-Web_mint_BG.png"
 
 export default function Mint() {
   const [{ wallet, connecting }, connect, disconnect] = useConnectWallet()
