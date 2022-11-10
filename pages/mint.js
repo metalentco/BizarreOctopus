@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { initOnboard } from '../utils/onboard'
 import { useConnectWallet, useSetChain, useWallets } from '@web3-onboard/react'
 import { config } from '../dapp.config'
-import animation from '/public/images/animacion_edicion1.gif'
+import animation from '/public/images/BO_Mint.gif'
 import Image from 'next/image'
 import {
   getTotalMinted,

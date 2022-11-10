@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { config } from '../dapp.config'
-import banner from "../public/images/thumbnail_Web_mint.png"
+import banner from "../public/images/BizarreOctopus-Web_mint_BG.png"
 
 export default function Home() {
   return (
@@ -24,9 +24,9 @@ export default function Home() {
           <Link href="#">
             <a className="font-coiny text-xl md:text-3xl font-bold">
               <span className="bg-gradient-to-br from-brand-blue to-brand-purple pr-2 bg-clip-text text-transparent ">
-                Doodlin
+                Bizarre
               </span>
-              Town
+              Octopus
             </a>
           </Link>
 
