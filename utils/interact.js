@@ -7,21 +7,18 @@ const web3 = createAlchemyWeb3(process.env.NEXT_PUBLIC_ALCHEMY_RPC_URL)
 import { config } from '../dapp.config'
 
 const contract = require('../artifacts/contracts/BoredApe.sol/BoredApe.json')
+
 const nftContract = new web3.eth.Contract(contract.abi, config.contractAddress)
 
-// Calculate merkle root from the whitelist array
-const leafNodes = whitelist.map((addr) => keccak256(addr))
-const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true })
-const root = merkleTree.getRoot()
 
 export const getTotalMinted = async () => {
-  const totalMinted = await nftContract.methods.totalSupply().call()
+  const totalMinted = await nftContract.methods.totalWhiteListSupply().call()
   return totalMinted
 }
 
 export const getMaxSupply = async () => {
-  const maxSupply = await nftContract.methods.maxSupply().call()
-  return maxSupply
+  const maxWhiteList = await nftContract.methods.maxWhiteList().call()
+  return maxWhiteList
 }
 
 export const isPausedState = async () => {
@@ -35,8 +32,8 @@ export const isPublicSaleState = async () => {
 }
 
 export const isPreSaleState = async () => {
-  const preSale = await nftContract.methods.presaleM().call()
-  return preSale
+  const whitelistM = await nftContract.methods.whitelistM().call()
+  return whitelistM
 }
 
 export const getPrice = async () => {
@@ -52,11 +49,26 @@ export const presaleMint = async (mintAmount) => {
     }
   }
 
-  const leaf = keccak256(window.ethereum.selectedAddress)
-  const proof = merkleTree.getHexProof(leaf)
-
-  // Verify Merkle Proof
-  const isValid = merkleTree.verify(proof, leaf, root)
+  var isValid = 1;
+  var merkle_proof;
+  const response = await fetch(`/api/getProof`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      address: window.ethereum.selectedAddress
+    }),
+  });
+  if(response.status == 200) {
+    const { proof, root } = await response.json();
+    merkle_proof = proof;
+    console.log("proof:", proof);
+    console.log("root:", root);
+  } else {
+    isValid = 0;
+  }
+  
 
   if (!isValid) {
     return {
@@ -64,7 +76,6 @@ export const presaleMint = async (mintAmount) => {
       status: 'Invalid Merkle Proof - You are not on the whitelist'
     }
   }
-
   const nonce = await web3.eth.getTransactionCount(
     window.ethereum.selectedAddress,
     'latest'
@@ -75,10 +86,10 @@ export const presaleMint = async (mintAmount) => {
     to: config.contractAddress,
     from: window.ethereum.selectedAddress,
     value: parseInt(
-      web3.utils.toWei(String(config.price * mintAmount), 'ether')
+      web3.utils.toWei(String(config.whitelist_price * mintAmount), 'ether')
     ).toString(16), // hex
     data: nftContract.methods
-      .presaleMint(window.ethereum.selectedAddress, mintAmount, proof)
+      .whitelistMint(mintAmount, merkle_proof)
       .encodeABI(),
     nonce: nonce.toString(16)
   }

@@ -9,7 +9,6 @@
     "start": "next start",
     "lint": "next lint"
   },
-  
   "dependencies": {
     "@alch/alchemy-web3": "^1.2.4",
     "@nomiclabs/hardhat-ethers": "^2.0.5",

@@ -1,10 +1,11 @@
 const config = {
   title: 'Doodlin Town',
-  description: 'We are 9999 Doodlins that live in the metaverse',
-  contractAddress: '0x94f62A5F63D9957D9867fAc87F8542F6F7bBcA83',
+  description: 'We are 4444 Doodlins that live in the metaverse',
+  contractAddress: '0x7d7b31f549993f4704345a3520dAEe7e67A4DA6A',
   maxMintAmount: 4,
   presaleMaxMintAmount: 4,
-  price: 0.036
+  price: 0.036,
+  whitelist_price: 0.0089999
 }
 
 export { config }
