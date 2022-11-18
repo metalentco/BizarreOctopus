@@ -1,5 +1,5 @@
 const config = {
-  title: 'BoredApe Dapp',
+  title: 'BoredAp Dapp',
   description: 'A showcase dapp which is built for you to create your own',
   contractAddress: '0x94f62A5F63D9957D9867fAc87F8542F6F7bBcA83',
   maxMintAmount: 4,
