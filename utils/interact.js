@@ -16,7 +16,7 @@ export const getWhiteListMinted = async () => {
 }
 
 export const getPublicMinted = async () => {
-  const publicMinted = await nftContract.methods.totalPublicSupply().call()
+  const publicMinted = await nftContract.methods.totalSupply().call()
   return publicMinted
 }
 
@@ -26,8 +26,8 @@ export const getMaxSupply = async () => {
 }
 
 export const getMaxPublic = async () => {
-  const maxPublic = await nftContract.methods.maxPublic().call()
-  return maxPublic
+  const maxSupply = await nftContract.methods.maxSupply().call()
+  return maxSupply
 }
 
 export const isPausedState = async () => {
@@ -35,10 +35,10 @@ export const isPausedState = async () => {
   return paused
 }
 
-export const isPublicSaleState = async () => {
-  const publicSale = await nftContract.methods.publicM().call()
-  return publicSale
-}
+// export const isPublicSaleState = async () => {
+//   const publicSale = await nftContract.methods.publicM().call()
+//   return publicSale
+// }
 
 export const isPreSaleState = async () => {
   const whitelistM = await nftContract.methods.whitelistM().call()
