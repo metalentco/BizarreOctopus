@@ -5,8 +5,10 @@ import { config } from '../dapp.config'
 import animation from '/public/images/BO_Mint.gif'
 import Image from 'next/image'
 import {
-  getTotalMinted,
+  getWhiteListMinted,
+  getPublicMinted,
   getMaxSupply,
+  getMaxPublic,
   isPausedState,
   isPublicSaleState,
   isPreSaleState,
@@ -21,7 +23,9 @@ export default function Mint() {
   const connectedWallets = useWallets()
 
   const [maxSupply, setMaxSupply] = useState(0)
-  const [totalMinted, setTotalMinted] = useState(0)
+  const [maxPublic, setMaxPublic] = useState(0)
+  const [whitelistMinted, setWhitelistMinted] = useState(0)
+  const [publicMinted, setPublicMinted] = useState(0)
   const [maxMintAmount, setMaxMintAmount] = useState(0)
   const [paused, setPaused] = useState(false)
   const [isPublicSale, setIsPublicSale] = useState(false)
@@ -72,7 +76,10 @@ export default function Mint() {
   useEffect(() => {
     const init = async () => {
       setMaxSupply(await getMaxSupply())
-      setTotalMinted(await getTotalMinted())
+      setMaxPublic(await getMaxPublic())
+
+      setWhitelistMinted(await getWhiteListMinted())
+      setPublicMinted(await getPublicMinted())
 
       setPaused(await isPausedState())
       setIsPublicSale(await isPublicSaleState())
@@ -160,8 +167,8 @@ export default function Mint() {
               <div className="relative w-full">
                 <div className="font-coiny z-10 absolute top-2 left-2 opacity-80 filter backdrop-blur-lg text-base px-4 py-2 bg-black border border-brand-purple rounded-md flex items-center justify-center text-white font-semibold">
                   <p>
-                    <span className="text-brand-pink">{totalMinted}</span> /{' '}
-                    {maxSupply}
+                    <span className="text-brand-pink">{isPreSale ? whitelistMinted : publicMinted}</span> /{' '}
+                    {isPreSale ? maxSupply : maxPublic}
                   </p>
                 </div>
 
@@ -229,8 +236,8 @@ export default function Mint() {
 
                     <div className="flex items-center space-x-3">
                       <p>
-                        {Number.parseFloat(config.price * mintAmount).toFixed(
-                          2
+                        {Number.parseFloat(config.whitelist_price * mintAmount).toFixed(
+                          7
                         )}{' '}
                         ETH
                       </p>{' '}
