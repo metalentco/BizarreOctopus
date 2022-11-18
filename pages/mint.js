@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { initOnboard } from '../utils/onboard'
 import { useConnectWallet, useSetChain, useWallets } from '@web3-onboard/react'
 import { config } from '../dapp.config'
-import animation from '/public/images/animacion_edicion1.gif'
+import animation from '/public/images/BO_Mint.gif'
 import Image from 'next/image'
 import {
   getWhiteListMinted,
@@ -15,7 +15,7 @@ import {
   presaleMint,
   publicMint
 } from '../utils/interact'
-import banner from "../public/images/thumbnail_Web_mint.png"
+import banner from "../public/images/BizarreOctopus-Web_mint_BG.png"
 
 export default function Mint() {
   const [{ wallet, connecting }, connect, disconnect] = useConnectWallet()
@@ -139,10 +139,10 @@ export default function Mint() {
     }}>
       <div className="relative w-full h-full flex flex-col items-center justify-center">
         <div className="flex flex-col items-center justify-center h-full w-full px-2 md:px-10 ">
-          <div className="fondo2  relative z-1 md:max-w-3xl w-full bg-gray-900/90 filter backdrop-blur-sm py-4 rounded-md px-2 md:px-10 flex flex-col items-center">
+          <div className="bg-[conic-gradient(var(--tw-gradient-stops))] from-slate-900 via-purple-900 to-slate-900 relative z-1 md:max-w-3xl w-full bg-gray-900/90 filter backdrop-blur-sm py-4 rounded-md px-2 md:px-10 flex flex-col items-center">
             {wallet && (
               <button
-                className="absolute right-4 bg-indigo-600 transition duration-200 ease-in-out font-chalk border-2 border-[rgba(0,0,0,1)] shadow-[0px_3px_0px_0px_rgba(0,0,0,1)] active:shadow-none px-4 py-2 rounded-md text-sm text-white tracking-wide uppercase"
+                className=" absolute right-4 bg-indigo-600 transition duration-200 ease-in-out font-chalk border-2 border-[rgba(0,0,0,1)] shadow-[0px_3px_0px_0px_rgba(0,0,0,1)] active:shadow-none px-4 py-2 rounded-md text-sm text-white tracking-wide uppercase"
                 onClick={() =>
                   disconnect({
                     label: wallet.label
@@ -152,7 +152,7 @@ export default function Mint() {
                 Disconnect
               </button>
             )}
-            <h1 className="font-coiny uppercase font-bold text-3xl md:text-4xl bg-gradient-to-br  from-brand-green to-brand-blue bg-clip-text text-transparent mt-3">
+            <h1 className="font-coiny uppercase font-bold text-3xl md:text-4xl text-white bg-clip-text text-transparent mt-3">
               {paused ? 'Paused' : isPreSale ? 'Pre-Sale' : 'Public Sale'}
             </h1>
             <h3 className="text-sm text-pink-200 tracking-widest">
@@ -201,7 +201,7 @@ export default function Mint() {
                     </svg>
                   </button>
 
-                  <p className="flex items-center justify-center flex-1 grow text-center font-bold text-brand-pink text-3xl md:text-4xl">
+                  <p className="flex items-center justify-center flex-1 grow text-center font-bold text-white text-3xl md:text-4xl">
                     {mintAmount}
                   </p>
 
@@ -261,7 +261,7 @@ export default function Mint() {
                   </button>
                 ) : (
                   <button
-                    className="font-coiny mt-12 w-full bg-transparent border-4 border-gray-700 shadow-lg px-6 py-3 rounded-2xl text-2xl text-white hover:shadow-pink-400/50 mx-4 tracking-wide uppercase"
+                    className="font-coiny mt-12 w-full bg-transparent border-4 border-gray-400 shadow-lg px-6 py-3 rounded-2xl text-2xl text-white hover:shadow-pink-400/50 mx-4 tracking-wide uppercase"
                     onClick={() => connect()}
                   >
                     Connect Wallet

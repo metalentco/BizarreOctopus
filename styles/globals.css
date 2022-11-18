@@ -83,9 +83,10 @@ html {
 .fondo2{
   background-color: rgb(162, 223, 219);
   
+  
 }
 .custom-image{
-  background-image: url("../public/images/thumbnail_Web_mint.png");
+  background-image: url("../public/images/BizarreOctopus-Web_mint_BG.png");
   /* filter: opacity(50%) */
 }
 
