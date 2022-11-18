@@ -24,7 +24,7 @@ async function main() {
   const boredApes = await BoredApes.deploy(
     BASE_URI,
     root,
-    proxyRegistryAddressMainnet
+    proxyRegistryAddressRinkeby
   )
 
   await boredApes.deployed()

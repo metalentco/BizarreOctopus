@@ -37,12 +37,12 @@ const initOnboard = init({
     //   label: 'Ethereum Rinkeby Testnet',
     //   rpcUrl: RPC_URL
     // }
-    {
-      id: '0x5',
-      token: 'gETH',
-      label: 'Goerli Testnet Network',
-      rpcUrl: RPC_URL
-    }
+    // {
+    //   id: '0x5',
+    //   token: 'gETH',
+    //   label: 'Goerli Testnet Network',
+    //   rpcUrl: RPC_URL
+    // }
     
     // {
     //   id: '0x89',
