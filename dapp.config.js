@@ -1,10 +1,11 @@
 const config = {
-  title: 'BoredApe Dapp',
-  description: 'A showcase dapp which is built for you to create your own',
-  contractAddress: '0x94f62A5F63D9957D9867fAc87F8542F6F7bBcA83',
+  title: 'Bizzarre Octopus',
+  description: 'We are 4444 Doodlins that live in the metaverse',
+  contractAddress: '0x43bEf4bFe81d53a6CBc8e2181B798116CF4466c8',
   maxMintAmount: 4,
   presaleMaxMintAmount: 4,
-  price: 0.00
+  price: 0.036,
+  whitelist_price: 0.0089999
 }
 
 export { config }

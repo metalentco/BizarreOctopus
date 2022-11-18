@@ -5,12 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
-    "start": "next start -p 3001",
     "staging": "next start -p 3001",
     "start": "next start",
     "lint": "next lint"
   },
-  
   "dependencies": {
     "@alch/alchemy-web3": "^1.2.4",
     "@nomiclabs/hardhat-ethers": "^2.0.5",
