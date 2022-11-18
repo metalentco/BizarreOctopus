@@ -5,7 +5,7 @@ const config = {
   maxMintAmount: 4,
   presaleMaxMintAmount: 4,
   price: 0.036,
-  whitelist_price: 0
+  whitelist_price: 0.00899999
 }
 
 export { config }

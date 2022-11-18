@@ -237,7 +237,7 @@ export default function Mint() {
                     <div className="flex items-center space-x-3">
                       <p>
                         {isPreSale ? Number.parseFloat(config.whitelist_price * mintAmount).toFixed(
-                          4
+                          8
                         ): Number.parseFloat(config.price * mintAmount).toFixed(
                           3
                         )}{' '}
