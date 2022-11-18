@@ -1,7 +1,7 @@
 const config = {
-  title: 'Doodlin Town',
+  title: 'Bizzarre Octopus',
   description: 'We are 4444 Doodlins that live in the metaverse',
-  contractAddress: '0x7d7b31f549993f4704345a3520dAEe7e67A4DA6A',
+  contractAddress: '0x43bEf4bFe81d53a6CBc8e2181B798116CF4466c8',
   maxMintAmount: 4,
   presaleMaxMintAmount: 4,
   price: 0.036,

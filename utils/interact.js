@@ -1,6 +1,5 @@
 const { createAlchemyWeb3 } = require('@alch/alchemy-web3')
-const { MerkleTree } = require('merkletreejs')
-const keccak256 = require('keccak256')
+
 const whitelist = require('../scripts/whitelist.js')
 
 const web3 = createAlchemyWeb3(process.env.NEXT_PUBLIC_ALCHEMY_RPC_URL)
@@ -11,14 +10,24 @@ const contract = require('../artifacts/contracts/BoredApe.sol/BoredApe.json')
 const nftContract = new web3.eth.Contract(contract.abi, config.contractAddress)
 
 
-export const getTotalMinted = async () => {
-  const totalMinted = await nftContract.methods.totalWhiteListSupply().call()
-  return totalMinted
+export const getWhiteListMinted = async () => {
+  const whitelistMinted = await nftContract.methods.totalWhiteListSupply().call()
+  return whitelistMinted
+}
+
+export const getPublicMinted = async () => {
+  const publicMinted = await nftContract.methods.totalPublicSupply().call()
+  return publicMinted
 }
 
 export const getMaxSupply = async () => {
   const maxWhiteList = await nftContract.methods.maxWhiteList().call()
   return maxWhiteList
+}
+
+export const getMaxPublic = async () => {
+  const maxPublic = await nftContract.methods.maxPublic().call()
+  return maxPublic
 }
 
 export const isPausedState = async () => {

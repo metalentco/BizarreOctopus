@@ -1336,18 +1336,18 @@ contract DoodlinTown is
     payable
     onlyAccounts
     {
-        require(publicM,                        "Doodlin Town: PublicSale is OFF");
-        require(!paused, "Doodlin Town: Contract is paused");
-        require(_amount > 0, "Doodlin Town: zero amount");
-        require(_amount <= maxMintAmount, "Doodlin Town: Max mint amount is limited to 4");
+        require(publicM,                        "Bizzarre Octopus: PublicSale is OFF");
+        require(!paused, "Bizzarre Octopus: Contract is paused");
+        require(_amount > 0, "Bizzarre Octopus: zero amount");
+        require(_amount <= maxMintAmount, "Bizzarre Octopus: Max mint amount is limited to 4");
         uint current = _tokenIds.current();
         require(
             current + _amount <= maxPublic,
-            "Doodlin Town: Max supply exceeded"
+            "Bizzarre Octopus: Max supply exceeded"
         );
         require(
             _price * _amount <= msg.value,
-            "Doodlin Town: Not enough ethers sent"
+            "Bizzarre Octopus: Not enough ethers sent"
         );
         
         
@@ -1361,10 +1361,10 @@ contract DoodlinTown is
     payable
     onlyAccounts
     {
-        require(whitelistM,                        "Doodlin Town: WhiteListSale is OFF");
-        require(!paused, "Doodlin Town: Contract is paused");
-        require(_amount > 0, "Doodlin Town: zero amount");
-        require(_amount <= maxMintAmount, "Doodlin Town: Max mint amount is limited to 4");
+        require(whitelistM,                        "Bizzarre Octopus: WhiteListSale is OFF");
+        require(!paused, "Bizzarre Octopus: Contract is paused");
+        require(_amount > 0, "Bizzarre Octopus: zero amount");
+        require(_amount <= maxMintAmount, "Bizzarre Octopus: Max mint amount is limited to 4");
         uint current = _tokenWhiteListIds.current();
         require(
             isWhiteListed(msg.sender, _proof), 
@@ -1372,11 +1372,11 @@ contract DoodlinTown is
         ); 
         require(
             current + _amount <= maxWhiteList,
-            "Doodlin Town: Max whitelist supply exceeded"
+            "Bizzarre Octopus: Max whitelist supply exceeded"
         );
         require(
             _whitelistPrice * _amount <= msg.value,
-            "Doodlin Town: Not enough ethers sent"
+            "Bizzarre Octopus: Not enough ethers sent"
         );
         
         
