@@ -10,7 +10,7 @@ import {
   getMaxSupply,
   getMaxPublic,
   isPausedState,
-  isPublicSaleState,
+  // isPublicSaleState,
   isPreSaleState,
   presaleMint,
   publicMint
@@ -82,7 +82,7 @@ export default function Mint() {
       setPublicMinted(await getPublicMinted())
 
       setPaused(await isPausedState())
-      setIsPublicSale(await isPublicSaleState())
+      // setIsPublicSale(await isPublicSaleState())
       const isPreSale = await isPreSaleState()
       setIsPreSale(isPreSale)
 
@@ -236,8 +236,10 @@ export default function Mint() {
 
                     <div className="flex items-center space-x-3">
                       <p>
-                        {Number.parseFloat(config.whitelist_price * mintAmount).toFixed(
-                          7
+                        {isPreSale ? Number.parseFloat(config.whitelist_price * mintAmount).toFixed(
+                          4
+                        ): Number.parseFloat(config.price * mintAmount).toFixed(
+                          3
                         )}{' '}
                         ETH
                       </p>{' '}
