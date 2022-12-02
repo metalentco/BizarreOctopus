@@ -21,19 +21,19 @@ export const getPublicMinted = async () => {
 }
 
 export const getMaxSupply = async () => {
-  const maxWhiteList = await nftContract.methods.maxWhiteList().call()
-  return maxWhiteList
-}
-
-export const getMaxPublic = async () => {
-  const maxPublic = await nftContract.methods.maxPublic().call()
-  return maxPublic
+  const maxSupply = await nftContract.methods.maxSupply().call()
+  return maxSupply
 }
 
 export const isPausedState = async () => {
   const paused = await nftContract.methods.paused().call()
   return paused
 }
+
+// export const getBalance = async () => {
+//   const publicMinted = await nftContract.methods.getBalance().call()
+//   return publicMinted
+// }
 
 export const isPublicSaleState = async () => {
   const publicSale = await nftContract.methods.publicM().call()
@@ -50,6 +50,11 @@ export const getPrice = async () => {
   return price
 }
 
+export const getWhitelistPrice = async () => {
+  const whitelistPrice = await nftContract.methods.whitelistPrice().call()
+  return whitelistPrice
+}
+
 export const presaleMint = async (mintAmount) => {
   if (!window.ethereum.selectedAddress) {
     return {
@@ -57,7 +62,14 @@ export const presaleMint = async (mintAmount) => {
       status: 'To be able to mint, you need to connect your wallet'
     }
   }
-
+  var isMinted = await nftContract.methods.getBalance(window.ethereum.selectedAddress).call();
+  console.log("isMinted:", isMinted);
+  if(isMinted == 1) {
+    return {
+      success: false,
+      status: 'Already minted'
+    }
+  }
   var isValid = 1;
   var merkle_proof;
   const response = await fetch(`/api/getProof`, {
@@ -78,7 +90,6 @@ export const presaleMint = async (mintAmount) => {
     isValid = 0;
   }
   
-
   if (!isValid) {
     return {
       success: false,
@@ -131,6 +142,14 @@ export const publicMint = async (mintAmount) => {
     return {
       success: false,
       status: 'To be able to mint, you need to connect your wallet'
+    }
+  }
+
+  var isMinted = await nftContract.methods.getBalance(window.ethereum.selectedAddress).call();
+  if(isMinted == 1) {
+    return {
+      success: false,
+      status: 'Already minted'
     }
   }
 

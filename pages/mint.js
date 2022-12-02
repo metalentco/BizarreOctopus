@@ -8,12 +8,12 @@ import {
   getWhiteListMinted,
   getPublicMinted,
   getMaxSupply,
-  getMaxPublic,
   isPausedState,
   isPublicSaleState,
   isPreSaleState,
   presaleMint,
   publicMint
+  // getBalance
 } from '../utils/interact'
 import banner from "../public/images/BizarreOctopus-Web_mint_BG.png"
 
@@ -23,7 +23,7 @@ export default function Mint() {
   const connectedWallets = useWallets()
 
   const [maxSupply, setMaxSupply] = useState(0)
-  const [maxPublic, setMaxPublic] = useState(0)
+  // const [balance, setBalance] = useState(0)
   const [whitelistMinted, setWhitelistMinted] = useState(0)
   const [publicMinted, setPublicMinted] = useState(0)
   const [maxMintAmount, setMaxMintAmount] = useState(0)
@@ -76,8 +76,7 @@ export default function Mint() {
   useEffect(() => {
     const init = async () => {
       setMaxSupply(await getMaxSupply())
-      setMaxPublic(await getMaxPublic())
-
+      // setBalance(await getBalance())
       setWhitelistMinted(await getWhiteListMinted())
       setPublicMinted(await getPublicMinted())
 
@@ -168,7 +167,7 @@ export default function Mint() {
                 <div className="font-coiny z-10 absolute top-2 left-2 opacity-80 filter backdrop-blur-lg text-base px-4 py-2 bg-black border border-brand-purple rounded-md flex items-center justify-center text-white font-semibold">
                   <p>
                     <span className="text-brand-pink">{isPreSale ? whitelistMinted : publicMinted}</span> /{' '}
-                    {isPreSale ? maxSupply : maxPublic}
+                    { maxSupply }
                   </p>
                 </div>
 
@@ -180,7 +179,7 @@ export default function Mint() {
               </div>
 
               <div className="flex flex-col items-center w-full px-4 mt-16 md:mt-0">
-                <div className="border-4 divide-x-4 divide-gray-700 rounded-xl border-gray-700 font-coiny flex items-center justify-between w-full">
+                {/* <div className="border-4 divide-x-4 divide-gray-700 rounded-xl border-gray-700 font-coiny flex items-center justify-between w-full">
                   <button
                     className="w-14 h-10 md:w-16 md:h-12 flex items-center justify-center text-brand-background hover:shadow-lg bg-transparent font-bold"
                     onClick={incrementMintAmount}
@@ -224,10 +223,10 @@ export default function Mint() {
                       />
                     </svg>
                   </button>
-                </div>
+                </div> */}
 
                 <p className="text-sm text-white tracking-widest mt-3">
-                  Max Mint Amount: {maxMintAmount}
+                  Max Mint Amount: 1
                 </p>
 
                 <div className="border-t border-b py-4 mt-16 w-full">
@@ -236,8 +235,10 @@ export default function Mint() {
 
                     <div className="flex items-center space-x-3">
                       <p>
-                        {Number.parseFloat(config.whitelist_price * mintAmount).toFixed(
+                        { isPreSale ? Number.parseFloat(config.whitelist_price * mintAmount).toFixed(
                           7
+                        ) : Number.parseFloat(config.price * mintAmount).toFixed(
+                          3
                         )}{' '}
                         ETH
                       </p>{' '}
