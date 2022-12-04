@@ -12,8 +12,9 @@ import {
   isPublicSaleState,
   isPreSaleState,
   presaleMint,
-  publicMint
-  // getBalance
+  publicMint,
+  getPrice,
+  getWhitelistPrice
 } from '../utils/interact'
 import banner from "../public/images/BizarreOctopus-Web_mint_BG.png"
 
@@ -35,6 +36,9 @@ export default function Mint() {
   const [mintAmount, setMintAmount] = useState(1)
   const [isMinting, setIsMinting] = useState(false)
   const [onboard, setOnboard] = useState(null)
+
+  const [price, setPrice] = useState(0)
+  const [whitelistPrice, setWhitelistPrice] = useState(0)
 
   useEffect(() => {
     setOnboard(initOnboard)
@@ -82,6 +86,8 @@ export default function Mint() {
 
       setPaused(await isPausedState())
       setIsPublicSale(await isPublicSaleState())
+      setPrice(await getPrice())
+      setWhitelistPrice(await getWhitelistPrice())
       const isPreSale = await isPreSaleState()
       setIsPreSale(isPreSale)
 
@@ -235,9 +241,9 @@ export default function Mint() {
 
                     <div className="flex items-center space-x-3">
                       <p>
-                        { isPreSale ? Number.parseFloat(config.whitelist_price * mintAmount).toFixed(
+                        { isPreSale ? Number.parseFloat(whitelistPrice * mintAmount/1000000000000000000).toFixed(
                           7
-                        ) : Number.parseFloat(config.price * mintAmount).toFixed(
+                        ) : Number.parseFloat(price * mintAmount/1000000000000000000).toFixed(
                           3
                         )}{' '}
                         ETH

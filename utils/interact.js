@@ -30,10 +30,6 @@ export const isPausedState = async () => {
   return paused
 }
 
-// export const getBalance = async () => {
-//   const publicMinted = await nftContract.methods.getBalance().call()
-//   return publicMinted
-// }
 
 export const isPublicSaleState = async () => {
   const publicSale = await nftContract.methods.publicM().call()
